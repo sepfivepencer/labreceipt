@@ -1,0 +1,56 @@
+{
+  "schema_version": "1",
+  "contract_id": "dependency_demo",
+  "status": "confirmed",
+  "reviewed_by": "example_author",
+  "artifacts": [
+    {
+      "id": "data",
+      "path": "data.csv",
+      "depends_on": [],
+      "max_bytes": 65536
+    },
+    {
+      "id": "report",
+      "path": "report.json",
+      "depends_on": ["data"],
+      "max_bytes": 65536
+    }
+  ],
+  "rules": [
+    {
+      "id": "data_exists",
+      "type": "exists",
+      "artifact": "data",
+      "config": {}
+    },
+    {
+      "id": "report_shape",
+      "type": "json_schema",
+      "artifact": "report",
+      "config": {
+        "schema": {
+          "type": "object",
+          "required": ["row_count", "conclusion"],
+          "additionalProperties": false,
+          "properties": {
+            "row_count": {"type": "integer", "minimum": 0},
+            "conclusion": {"type": "string", "minLength": 1}
+          }
+        }
+      }
+    },
+    {
+      "id": "row_count",
+      "type": "json_pointer_equals",
+      "artifact": "report",
+      "config": {"pointer": "/row_count", "expected": 2}
+    },
+    {
+      "id": "report_secrets",
+      "type": "secret_scan",
+      "artifact": "report",
+      "config": {}
+    }
+  ]
+}

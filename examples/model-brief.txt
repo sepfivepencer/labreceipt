@@ -1,0 +1,1 @@
+The agent must deliver report.json. The file must contain a non-empty summary string and an integer row_count. It must not contain credentials.
