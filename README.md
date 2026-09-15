@@ -56,7 +56,6 @@ After changing `examples/workspace/data.csv`, rerun with `--previous first-recei
 - [How to draft a contract with a local model](docs/how-to-model-proposal.md)
 - [CLI, contract, rule, and Python reference](docs/reference.md)
 - [Design, threat model, and prior-art boundary](docs/explanation-design.md)
-- [AI assistance disclosure](AI_USAGE.md)
 
 ## Competition status
 
